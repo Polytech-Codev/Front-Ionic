@@ -9,6 +9,10 @@ import {ListPage} from '../pages/list/list';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {BarcodeScanner} from '@ionic-native/barcode-scanner';
+import { AuthProvider } from '../providers/auth/auth';
+import {IonicStorageModule} from '@ionic/storage';
+import {LoginPageModule} from '../pages/login/login.module';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,10 @@ import {BarcodeScanner} from '@ionic-native/barcode-scanner';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
+    LoginPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -30,7 +37,8 @@ import {BarcodeScanner} from '@ionic-native/barcode-scanner';
     StatusBar,
     SplashScreen,
     BarcodeScanner,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthProvider
   ]
 })
 export class AppModule {
