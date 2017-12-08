@@ -12,7 +12,19 @@ import {BarcodeScanner} from '@ionic-native/barcode-scanner';
 import { AuthProvider } from '../providers/auth/auth';
 import {IonicStorageModule} from '@ionic/storage';
 import {LoginPageModule} from '../pages/login/login.module';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import {SignupPageModule} from '../pages/signup/signup.module';
+import {TutorialPageModule} from '../pages/tutorial/tutorial.module';
+import {WelcomePageModule} from '../pages/welcome/welcome.module';
+
+// The translate loader needs to know where to load i18n files
+// in Ionic's static asset pipeline.
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
 
 @NgModule({
   declarations: [
@@ -25,7 +37,17 @@ import {HttpClientModule} from '@angular/common/http';
     HttpClientModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
-    LoginPageModule
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      }
+    }),
+    LoginPageModule,
+    SignupPageModule,
+    TutorialPageModule,
+    WelcomePageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
