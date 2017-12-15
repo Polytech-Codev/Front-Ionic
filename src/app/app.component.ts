@@ -4,7 +4,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TranslateService } from '@ngx-translate/core';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 import {AuthProvider} from '../providers/auth/auth';
 import {FirstRunPage, MainPage} from '../pages/pages';
 
@@ -14,7 +13,7 @@ import {FirstRunPage, MainPage} from '../pages/pages';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = MainPage;
+  rootPage: any = FirstRunPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -47,7 +46,7 @@ export class MyApp {
       this.splashScreen.hide();
       this.initTranslate();
       this.authProvider.isAuthenticated().subscribe(isAuthenticated => {
-        if(!isAuthenticated) this.rootPage = FirstRunPage;
+        if(isAuthenticated) this.rootPage = MainPage;
       })
     });
   }

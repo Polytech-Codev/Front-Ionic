@@ -1,6 +1,6 @@
 {
   "name": "manga-drein",
-  "app_id": "8e36a251",
+  "app_id": "8fd5774d",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
