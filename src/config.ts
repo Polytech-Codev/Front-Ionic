@@ -1,6 +1,6 @@
 export const CONFIG = {
   api: {
-    hostname: 'localhost',
+    hostname: '192.168.43.136',
     port: 3000,
     secure: false,
     base: '/',
