@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, ToastController } from 'ionic-angular';
-
-import { MainPage } from '../pages';
+import {Component} from '@angular/core';
+import {IonicPage, NavController, ToastController} from 'ionic-angular';
+import {TranslateService} from '@ngx-translate/core';
+import {MainPage} from '../pages';
 import {AuthProvider} from '../../providers/auth/auth';
 
 @IonicPage()
@@ -24,9 +23,9 @@ export class SignupPage {
   private signupErrorString: string;
 
   constructor(public navCtrl: NavController,
-    public auth: AuthProvider,
-    public toastCtrl: ToastController,
-    public translateService: TranslateService) {
+              public auth: AuthProvider,
+              public toastCtrl: ToastController,
+              public translateService: TranslateService) {
 
     this.translateService.get('SIGNUP_ERROR').subscribe((value) => {
       this.signupErrorString = value;
