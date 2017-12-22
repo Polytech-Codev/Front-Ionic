@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {BarcodeScanner} from '@ionic-native/barcode-scanner';
+import {BookPage} from '../book/book';
 
 @Component({
   selector: 'page-home',
@@ -15,8 +16,7 @@ export class HomePage {
 
   scan(){
     this.barcodeScanner.scan().then((barcodeData) => {
-      this.info = barcodeData;
-      console.log(barcodeData);
+      this.navCtrl.push(BookPage,{isbn:barcodeData.text})
     }, (err) => {
       // An error occurred
     });
