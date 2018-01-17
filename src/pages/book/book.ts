@@ -16,15 +16,16 @@ import {Book} from '../../providers/isbn/book';
   templateUrl: 'book.html',
 })
 export class BookPage {
+  isbn = '';
   book : Book;
   err;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private isbn: IsbnProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private isbnProvider: IsbnProvider) {
   }
 
   ionViewDidLoad() {
-    const isbn = this.navParams.get('isbn');
-    this.isbn.getBookByIsbn(isbn).subscribe(
+    this.isbn = this.navParams.get('isbn');
+    this.isbnProvider.getBookByIsbn(this.isbn).subscribe(
       (book)=> {
         this.book = book;
       }, (err) => {
