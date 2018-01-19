@@ -13,8 +13,8 @@
 </ion-header>
 
 
-<ion-content padding *ngIf="book" class="padding-top">
-  <ion-grid>
+<ion-content padding class="padding-top">
+  <ion-grid *ngIf="book">
     <ion-row>
       <ion-col col-4>
         <img src="{{book.imageLinks.thumbnail}}" alt="thumbnail of {{book.title}}">
