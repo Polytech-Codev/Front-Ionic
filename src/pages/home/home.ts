@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {BarcodeScanner} from '@ionic-native/barcode-scanner';
 import {BookPage} from '../book/book';
+import {HistoryPage} from '../history/history';
 
 @Component({
   selector: 'page-home',
@@ -20,6 +21,10 @@ export class HomePage {
     }, (err) => {
       // An error occurred
     });
+  }
+
+  goToHistory() {
+    this.navCtrl.push(HistoryPage);
   }
 
 }
