@@ -24,6 +24,8 @@ import {ScansPageModule} from "../pages/scans/scans.module";
 import {Facebook} from "@ionic-native/facebook";
 import {TokenInterceptor} from "../providers/auth/TokenInterceptor";
 
+import {HistoryPageModule} from '../pages/history/history.module';
+import { HistoryProvider } from '../providers/history/history';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -53,9 +55,9 @@ export function createTranslateLoader(http: HttpClient) {
     TutorialPageModule,
     WelcomePageModule,
     BookPageModule,
-    BookPageModule,
     ChapterListPageModule,
     ScansPageModule,
+    HistoryPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -76,6 +78,7 @@ export function createTranslateLoader(http: HttpClient) {
     },
     AuthProvider,
     IsbnProvider,
+    HistoryProvider,
     ChapterProvider,
   ]
 })

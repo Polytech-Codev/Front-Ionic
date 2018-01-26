@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {BarcodeScanner} from '@ionic-native/barcode-scanner';
 import {BookPage} from '../book/book';
-import {ChapterListPage} from "../chapter-list/chapter-list";
+import {HistoryPage} from '../history/history';
 
 @Component({
   selector: 'page-home',
@@ -22,4 +22,9 @@ export class HomePage {
       // An error occurred
     });
   }
+
+  goToHistory() {
+    this.navCtrl.push(HistoryPage);
+  }
+
 }
