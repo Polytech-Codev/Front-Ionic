@@ -15,7 +15,7 @@
 
 <ion-content padding class="padding-top">
   <ion-grid *ngFor="let bookHistory of books">
-    <ion-row>
+    <ion-row (click)="goToBook(bookHistory)">
       <ion-col col-4>
         <img src="{{bookHistory.book.imageLinks.thumbnail}}" alt="thumbnail of {{bookHistory.book.title}}">
       </ion-col>
@@ -33,3 +33,6 @@
     {{err|json}}
   </div>
 </ion-content>
+
+
+

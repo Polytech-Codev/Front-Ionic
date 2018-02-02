@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {Book} from '../../providers/isbn/book';
 import {HistoryProvider} from '../../providers/history/history';
 import {BookHistory} from "../../providers/history/BookHistory";
+import {BookPage} from "../book/book";
 
 /**
  * Generated class for the HistoryPage page.
@@ -25,13 +25,17 @@ export class HistoryPage {
 
   ionViewDidLoad() {
     this.hitoryProvider.getHistoryForCurrentUser().subscribe(
-      (books)=> {
+      (books) => {
         this.books = books;
+        console.log(books);
       }, (err) => {
         this.err = err;
       }
     )
+  }
 
+  goToBook(BookHistory) {
+    this.navCtrl.push(BookPage,{isbn:BookHistory.book.isbn})
   }
 
 }
