@@ -1,8 +1,8 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {Book} from '../isbn/book';
 import {CONFIG} from '../../config';
+import {BookHistory} from "./BookHistory";
 
 /*
   Generated class for the HistoryProvider provider.
@@ -17,8 +17,8 @@ export class HistoryProvider {
     console.log('Hello HistoryProvider Provider');
   }
 
-  getHistoryForCurrentUser(): Observable<Book[]> {
-    return this.http.get<Book[]>(CONFIG.api.url() + 'history/');
+  getHistoryForCurrentUser(): Observable<BookHistory[]> {
+    return this.http.get<BookHistory[]>(CONFIG.api.url() + 'user/history');
   }
 
 }

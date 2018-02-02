@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Book} from '../../providers/isbn/book';
 import {HistoryProvider} from '../../providers/history/history';
+import {BookHistory} from "../../providers/history/BookHistory";
 
 /**
  * Generated class for the HistoryPage page.
@@ -16,7 +17,7 @@ import {HistoryProvider} from '../../providers/history/history';
   templateUrl: 'history.html',
 })
 export class HistoryPage {
-  books : Book[];
+  books : BookHistory[];
   err;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private hitoryProvider: HistoryProvider) {
