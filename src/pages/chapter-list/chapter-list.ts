@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {MangaModel} from "../../providers/chapter/mangaModel";
+import {ChapterProvider} from "../../providers/chapter/chapter";
 
 /**
  * Generated class for the ChapterListPage page.
@@ -14,12 +16,26 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'chapter-list.html',
 })
 export class ChapterListPage {
+  isbn = '';
+  mangaModel: MangaModel;
+  err;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private chapterProvider: ChapterProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ChapterListPage');
+    this.isbn = this.navParams.get('isbn');
+    this.chapterProvider.getChapterListByIsbn(this.isbn).subscribe(
+      (mangaModel)=> {
+        this.mangaModel = mangaModel;
+      }, (err) => {
+        this.err = err;
+      }
+    )
   }
+
+  /*goToScans(chapter) {
+    //this.navCtrl.push(ChapterListPage,{isbn:this.isbn})
+  }*/
 
 }

@@ -1,5 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {CONFIG} from '../../config';
+import {MangaModel} from "./mangaModel";
 
 /*
   Generated class for the ChapterProvider provider.
@@ -11,7 +14,11 @@ import { Injectable } from '@angular/core';
 export class ChapterProvider {
 
   constructor(public http: HttpClient) {
-    console.log('Hello ChapterProvider Provider');
+    console.log('Hello IsbnProvider Provider');
+  }
+
+  getChapterListByIsbn(isbn: string): Observable<MangaModel> {
+    return this.http.get<MangaModel>(CONFIG.api.url() + 'manga/chapters/' + isbn);
   }
 
 }

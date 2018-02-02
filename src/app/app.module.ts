@@ -21,6 +21,7 @@ import {WelcomePageModule} from '../pages/welcome/welcome.module';
 import {IsbnProvider} from '../providers/isbn/isbn';
 import {BookPageModule} from '../pages/book/book.module';
 import { ChapterProvider } from '../providers/chapter/chapter';
+import {ChapterListPageModule} from "../pages/chapter-list/chapter-list.module";
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -51,7 +52,8 @@ export function createTranslateLoader(http: HttpClient) {
     SignupPageModule,
     TutorialPageModule,
     WelcomePageModule,
-    BookPageModule
+    BookPageModule,
+    ChapterListPageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

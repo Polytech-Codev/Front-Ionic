@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {BarcodeScanner} from '@ionic-native/barcode-scanner';
 import {BookPage} from '../book/book';
+import {ChapterListPage} from "../chapter-list/chapter-list";
 
 @Component({
   selector: 'page-home',
@@ -14,7 +15,7 @@ export class HomePage {
 
   }
 
-  scan(){
+  scan() {
     this.barcodeScanner.scan().then((barcodeData) => {
       this.navCtrl.push(BookPage,{isbn:barcodeData.text})
     }, (err) => {
@@ -22,4 +23,7 @@ export class HomePage {
     });
   }
 
+  goToChapterList() {
+    this.navCtrl.push(ChapterListPage,{isbn: '9782344006597'})
+  }
 }
