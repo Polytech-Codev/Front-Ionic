@@ -20,6 +20,7 @@ import {TutorialPageModule} from '../pages/tutorial/tutorial.module';
 import {WelcomePageModule} from '../pages/welcome/welcome.module';
 import {IsbnProvider} from '../providers/isbn/isbn';
 import {BookPageModule} from '../pages/book/book.module';
+import { ChapterProvider } from '../providers/chapter/chapter';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -64,7 +65,8 @@ export function createTranslateLoader(http: HttpClient) {
     BarcodeScanner,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
-    IsbnProvider
+    IsbnProvider,
+    ChapterProvider
   ]
 })
 export class AppModule {
