@@ -19,21 +19,31 @@ export class ChapterProvider {
   }
 
   getChapterListByIsbn(isbn: string): Observable<MangaModel> {
-    console.log("getChapterListByIsbn start");
     return Observable.create(observer => {
       this.storage.get('JWT_TOKEN').then((token) => {
-        console.log('getChapterListByIsbn : ',token);
-
         const headers = new  HttpHeaders().set('manga-drein-access-token',token);
-        console.log('getChapterListByIsbn : ',headers);
-
         this.http.get<MangaModel>(CONFIG.api.url() + 'manga/chapters/' + isbn,{headers:headers}).subscribe(
           mangaModel => {
-            console.log('getChapterListByIsbn : ',mangaModel);
             observer.next(mangaModel);
             observer.complete();
           },error2 => {
-            console.log('getChapterListByIsbn : ',error2);
+            observer.error(error2);
+            observer.complete();
+          }
+        );
+      });
+    });
+  }
+
+  getScanList(chapterId: string): Observable<string[]> {
+    return Observable.create(observer => {
+      this.storage.get('JWT_TOKEN').then((token) => {
+        const headers = new  HttpHeaders().set('manga-drein-access-token',token);
+        this.http.get<string[]>(CONFIG.api.url() + 'manga/chapter/scans/' + chapterId,{headers:headers}).subscribe(
+          scans => {
+            observer.next(scans);
+            observer.complete();
+          },error2 => {
             observer.error(error2);
             observer.complete();
           }

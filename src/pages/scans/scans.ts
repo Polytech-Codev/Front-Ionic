@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {ChapterProvider} from "../../providers/chapter/chapter";
 
 /**
  * Generated class for the ScansPage page.
@@ -15,20 +16,21 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ScansPage {
   chapterId = '';
-  scansUrls = '';
+  scansUrls = [];
+  err = '';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private chapterProvider: ChapterProvider) {
   }
 
   ionViewDidLoad() {
     this.chapterId = this.navParams.get('chapterId');
-    /*this.chapterProvider.getChapterListByIsbn(this.isbn).subscribe(
-      (mangaModel)=> {
-        this.mangaModel = mangaModel;
+    this.chapterProvider.getScanList(this.chapterId).subscribe(
+      (result)=> {
+        this.scansUrls = result;
       }, (err) => {
         this.err = err;
       }
-    )*/
+    )
   }
 
 }

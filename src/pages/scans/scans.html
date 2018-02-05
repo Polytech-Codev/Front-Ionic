@@ -14,5 +14,10 @@
 
 
 <ion-content padding>
-kjgfds qkfgdsgfdsyhfgdsifhgdsfjkgf su f  ggg qq f qdf gg dsg g
+  <ion-card *ngFor="let scan of scansUrls">
+    <ion-card-content col-12>
+      <img src="{{scan.url}}" />
+
+    </ion-card-content>
+  </ion-card>
 </ion-content>
