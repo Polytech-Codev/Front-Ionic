@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {MangaModel} from "../../providers/chapter/mangaModel";
 import {ChapterProvider} from "../../providers/chapter/chapter";
+import {ScansPage} from "../scans/scans";
 
 /**
  * Generated class for the ChapterListPage page.
@@ -34,8 +35,8 @@ export class ChapterListPage {
     )
   }
 
-  /*goToScans(chapter) {
-    //this.navCtrl.push(ChapterListPage,{isbn:this.isbn})
-  }*/
+  goToScans(chapter) {
+    this.navCtrl.push(ScansPage,{chapterId:chapter.id})
+  }
 
 }
