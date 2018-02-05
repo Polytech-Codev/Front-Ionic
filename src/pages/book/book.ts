@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {IsbnProvider} from '../../providers/isbn/isbn';
 import {Book} from '../../providers/isbn/book';
-import {ChapterListPage} from "../chapter-list/chapter-list";
+//import {ChapterListPage} from "../chapter-list/chapter-list";
 
 /**
  * Generated class for the BookPage page.
