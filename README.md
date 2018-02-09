@@ -12,4 +12,4 @@
 * [Barcode Scanner](https://ionicframework.com/docs/native/barcode-scanner/)
 
 
-
+ionic cordova plugin add cordova-plugin-facebook4 --variable APP_ID="139920246702072" --variable APP_NAME="manga drein"
