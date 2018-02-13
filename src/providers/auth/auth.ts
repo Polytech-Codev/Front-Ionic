@@ -1,4 +1,4 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpResponse} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Storage} from '@ionic/storage';
 import {CONFIG} from '../../config';
@@ -30,17 +30,13 @@ export class AuthProvider {
         console.log('Error logging into Facebook', e);
         return Observable.throw(e);
       })
-      .map((res: FacebookLoginResponse) => {
+      .mergeMap((res: FacebookLoginResponse) => {
         console.log('facebook login response', res);
         return this.http.post(CONFIG.api.url() + 'auth/facebook', {access_token: res.authResponse.accessToken})
       })
-      .map(response => {
-        console.log('facebook login backend response', response);
-        console.log(response);
+      .do((response) => {
         const token = response['x-auth-token'];
-        if (token) {
-          this.storage.set('JWT_TOKEN', token);
-        }
+        return this.storage.set('JWT_TOKEN', token);
       });
   }
 

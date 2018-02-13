@@ -11,7 +11,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {BarcodeScanner} from '@ionic-native/barcode-scanner';
 import {AuthProvider} from '../providers/auth/auth';
 import {IonicStorageModule} from '@ionic/storage';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {TutorialPageModule} from '../pages/tutorial/tutorial.module';
@@ -22,6 +22,7 @@ import { ChapterProvider } from '../providers/chapter/chapter';
 import {ChapterListPageModule} from "../pages/chapter-list/chapter-list.module";
 import {ScansPageModule} from "../pages/scans/scans.module";
 import {Facebook} from "@ionic-native/facebook";
+import {TokenInterceptor} from "../providers/auth/TokenInterceptor";
 
 
 // The translate loader needs to know where to load i18n files
@@ -68,6 +69,11 @@ export function createTranslateLoader(http: HttpClient) {
     SplashScreen,
     BarcodeScanner,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
     AuthProvider,
     IsbnProvider,
     ChapterProvider,

@@ -1,6 +1,6 @@
 export const CONFIG = {
   api: {
-    hostname: 'codev.polytech-info.fr',
+    hostname: '192.168.1.84',
     port: 3000,
     secure: false,
     base: '/',

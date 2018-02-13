@@ -20,10 +20,11 @@ export class WelcomePage {
   }
 
   fbLogin() {
-    this.authProvider.fbLogin().subscribe(() => {
+    this.authProvider.fbLogin().subscribe((success) => {
+      console.log(success);
       console.log('User has been logged in');
       this.navCtrl.push(HomePage);
-    });
+    },error2 => console.log(error2));
   }
 
 }
