@@ -1,4 +1,4 @@
-import {HttpClient, HttpResponse} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Storage} from '@ionic/storage';
 import {CONFIG} from '../../config';
@@ -36,7 +36,7 @@ export class AuthProvider {
       })
       .do((response) => {
         const token = response['x-auth-token'];
-        return this.storage.set('JWT_TOKEN', token);
+        this.storage.set('JWT_TOKEN', token);
       });
   }
 
