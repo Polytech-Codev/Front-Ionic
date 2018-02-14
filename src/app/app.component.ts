@@ -1,9 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { TranslateService } from '@ngx-translate/core';
-import { HomePage } from '../pages/home/home';
+import {Component, ViewChild} from '@angular/core';
+import {Nav, Platform} from 'ionic-angular';
+import {StatusBar} from '@ionic-native/status-bar';
+import {SplashScreen} from '@ionic-native/splash-screen';
+import {TranslateService} from '@ngx-translate/core';
 import {AuthProvider} from '../providers/auth/auth';
 import {FirstRunPage, MainPage} from '../pages/pages';
 
@@ -15,14 +14,13 @@ export class MyApp {
 
   rootPage: any = FirstRunPage;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{ title: string, component: any }>;
 
-  constructor(private translate: TranslateService,public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,private authProvider:AuthProvider) {
+  constructor(private translate: TranslateService, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private authProvider: AuthProvider) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
-    this.pages = [
-    ];
+    this.pages = [];
 
   }
 
@@ -45,7 +43,7 @@ export class MyApp {
       this.splashScreen.hide();
       this.initTranslate();
       this.authProvider.isAuthenticated().subscribe(isAuthenticated => {
-        if(isAuthenticated) this.rootPage = MainPage;
+        if (isAuthenticated) this.rootPage = MainPage;
       })
     });
   }
