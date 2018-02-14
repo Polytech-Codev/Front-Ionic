@@ -19,7 +19,7 @@
       <ion-col col-4>
         <img src="{{book.imageLinks.thumbnail}}" alt="thumbnail of {{book.title}}">
       </ion-col>
-      <ion-col col-6>
+      <ion-col col-8>
         <ion-list>
           <ion-item>{{book.authors}}</ion-item>
           <ion-item>{{book.publishedDate | date: 'dd/MM/yyyy'}}</ion-item>
@@ -28,8 +28,8 @@
           <ion-item>{{book.retailPrice.amount + ' ' + book.retailPrice.currencyCode}} </ion-item>
         </ion-list>
       </ion-col>
-      <ion-col col-2>
-        <button ion-button (click)='goToChapterList();'>Read manga online</button>
+      <ion-col col-12>
+        <button ion-button block (click)='goToChapterList();'>Read manga online</button>
       </ion-col>
     </ion-row>
     <ion-row>
@@ -37,7 +37,6 @@
         <p>
           {{book.description}}
         </p>
-
       </ion-col>
     </ion-row>
   </ion-grid>

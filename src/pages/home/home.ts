@@ -22,8 +22,4 @@ export class HomePage {
       // An error occurred
     });
   }
-
-  goToChapterList() {
-    this.navCtrl.push(ChapterListPage,{isbn: '9782344006597'})
-  }
 }
