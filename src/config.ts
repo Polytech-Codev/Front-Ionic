@@ -1,6 +1,6 @@
 export const CONFIG = {
   api: {
-    hostname: '192.168.118.1',
+    hostname: '192.168.1.84',
     port: 3000,
     secure: false,
     base: '/',
@@ -11,4 +11,4 @@ export const CONFIG = {
       + CONFIG.api.base
     }
   }
-}
+};
