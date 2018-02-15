@@ -5,6 +5,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {TranslateService} from '@ngx-translate/core';
 import {AuthProvider} from '../providers/auth/auth';
 import {FirstRunPage, MainPage} from '../pages/pages';
+import {HistoryPage} from "../pages/history/history";
 
 @Component({
   templateUrl: 'app.html'
@@ -20,7 +21,9 @@ export class MyApp {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
-    this.pages = [];
+    this.pages = [
+      { title: 'Home', component: HistoryPage },
+    ];
 
   }
 
