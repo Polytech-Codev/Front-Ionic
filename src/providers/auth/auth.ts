@@ -2,57 +2,61 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Storage} from '@ionic/storage';
 import {CONFIG} from '../../config';
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
+import {Facebook, FacebookLoginResponse} from "@ionic-native/facebook";
 
-/*
-  Generated class for the AuthProvider provider.
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
+interface User {
+  _id: string;
+  email: string;
+  name: string;
+}
+
 @Injectable()
 export class AuthProvider {
-  private authSubject = new BehaviorSubject<boolean>(false);
 
-  constructor(private http: HttpClient, private storage: Storage) {
-    console.log('AuthProvider Provider');
-    this.storage.get('JWT_TOKEN').then(token => {
-      this.authSubject.next(!!token);
-    });
+  constructor(private http: HttpClient, private storage: Storage, private fb: Facebook) {
   }
 
-  public signup(user: { name: string, email: string, password: string }): Observable<boolean> {
-    return this.http.post(CONFIG.api.url() + 'auth/signup', user).map((data: { token: string, success: boolean }) => {
-      if (data.success) {
-        this.storage.set('JWT_TOKEN', data.token);
-        this.authSubject.next(true);
-      }
-      return data.success;
-    });
+
+  fbLogin(): Observable<any> {
+    console.log('facebook login start');
+    return Observable.fromPromise(this.fb.login(['public_profile', 'user_friends', 'email']))
+      .catch(e => {
+        console.log('Error logging into Facebook', e);
+        return Observable.throw(e);
+      })
+      .mergeMap((res: FacebookLoginResponse) => {
+        console.log('facebook login response', res);
+        return this.http.post(CONFIG.api.url() + 'auth/facebook', {access_token: res.authResponse.accessToken})
+      })
+      .do((response) => {
+        const token = response['x-auth-token'];
+        this.storage.set('JWT_TOKEN', token);
+      });
   }
 
-  public signin(credential: { email: string, password: string }): Observable<boolean> {
-    return this.http.post(CONFIG.api.url() + 'auth/signin', credential).map((data: { token: string, success: boolean }) => {
-      if (data.success) {
-        this.storage.set('JWT_TOKEN', data.token);
-        this.authSubject.next(true);
-      }
-      return data.success;
-    });
+
+  getCurrentUser(): Observable<User> {
+    return this.http.get<User>(CONFIG.api.url() + 'users/profile');
   }
 
   public isAuthenticated(): Observable<boolean> {
-    this.storage.get('JWT_TOKEN').then(token => {
-      this.authSubject.next(!!token);
+    return this.getCurrentUser().map(user => true).catch(error => {
+      console.error(error);
+      return Observable.of(false);
     });
-
-    return this.authSubject.asObservable();
   }
 
-  public logout(){
-    this.authSubject.next(false);
+  public isAnonymous(): Observable<boolean> {
+    return this.isAuthenticated().map(auth => !auth);
+  }
+
+  public logout() {
     this.storage.set('JWT_TOKEN', null);
   }
 

@@ -21,8 +21,7 @@ export class ChapterProvider {
   getChapterListByIsbn(isbn: string): Observable<MangaModel> {
     return Observable.create(observer => {
       this.storage.get('JWT_TOKEN').then((token) => {
-        const headers = new  HttpHeaders().set('manga-drein-access-token',token);
-        this.http.get<MangaModel>(CONFIG.api.url() + 'manga/chapters/' + isbn,{headers:headers}).subscribe(
+        this.http.get<MangaModel>(CONFIG.api.url() + 'manga/chapters/' + isbn).subscribe(
           mangaModel => {
             observer.next(mangaModel);
             observer.complete();

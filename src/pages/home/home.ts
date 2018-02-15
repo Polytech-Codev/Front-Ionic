@@ -1,18 +1,23 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {BarcodeScanner} from '@ionic-native/barcode-scanner';
 import {BookPage} from '../book/book';
-import {ChapterListPage} from "../chapter-list/chapter-list";
+import {HistoryPage} from '../history/history';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage {
+export class HomePage implements OnInit{
+
   info = {};
 
   constructor(public navCtrl: NavController,private barcodeScanner: BarcodeScanner) {
 
+  }
+
+  ngOnInit(): void {
+    this.navCtrl.remove(0,this.navCtrl.length())
   }
 
   scan() {
@@ -23,7 +28,8 @@ export class HomePage {
     });
   }
 
-  goToChapterList() {
-    this.navCtrl.push(ChapterListPage,{isbn: '9782344006597'})
+  goToHistory() {
+    this.navCtrl.push(HistoryPage);
   }
+
 }

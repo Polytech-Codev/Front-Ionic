@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {IsbnProvider} from '../../providers/isbn/isbn';
 import {Book} from '../../providers/isbn/book';
 import {ChapterListPage} from "../chapter-list/chapter-list";
+import {HomePage} from "../home/home";
+import {BarcodeScanner} from "@ionic-native/barcode-scanner";
 
 /**
  * Generated class for the BookPage page.
@@ -21,7 +23,12 @@ export class BookPage {
   book : Book;
   err;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private isbnProvider: IsbnProvider) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private isbnProvider: IsbnProvider,
+    private alertCtrl: AlertController,
+    private barcodeScanner: BarcodeScanner) {
   }
 
   ionViewDidLoad() {
@@ -31,6 +38,30 @@ export class BookPage {
         this.book = book;
       }, (err) => {
         this.err = err;
+
+        let alert = this.alertCtrl.create({
+          title: err.status == 404 ? "Manga introuvable":"Erreur",
+          message: 'Le manga est actuellement introuvable dans la base de données. \n Désolé.',
+          buttons: [
+            {
+              text: 'Go home',
+              handler: () => {
+                this.navCtrl.push(HomePage)
+              }
+            },
+            {
+              text: 'Try Again',
+              handler: () => {
+                this.barcodeScanner.scan().then((barcodeData) => {
+                  this.navCtrl.push(BookPage,{isbn:barcodeData.text})
+                }, (err) => {
+                  // An error occurred
+                });
+              }
+            }
+          ]
+        });
+        alert.present();
       }
     )
   }
