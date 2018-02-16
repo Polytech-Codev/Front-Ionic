@@ -26,18 +26,18 @@ export class TutorialPage {
       {
         title: 'TUTORIAL_SLIDE1_TITLE',
         description: 'TUTORIAL_SLIDE1_DESCRIPTION',
-        image: 'assets/img/ica-slidebox-img-1.png',
+        image: 'assets/imgs/logo.png',
       },
       {
         title: 'TUTORIAL_SLIDE2_TITLE',
         description: 'TUTORIAL_SLIDE2_DESCRIPTION',
-        image: 'assets/img/ica-slidebox-img-2.png',
+        image: 'assets/imgs/ISBN.jpg',
       },
-      {
-        title: 'TUTORIAL_SLIDE3_TITLE',
-        description: 'TUTORIAL_SLIDE3_DESCRIPTION',
-        image: 'assets/img/ica-slidebox-img-3.png',
-      }
+      // {
+      //   title: 'TUTORIAL_SLIDE3_TITLE',
+      //   description: 'TUTORIAL_SLIDE3_DESCRIPTION',
+      //   image: 'assets/img/ica-slidebox-img-3.png',
+      // }
     ];
 
   }

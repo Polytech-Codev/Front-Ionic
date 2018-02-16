@@ -4,7 +4,6 @@ import {MangaModel} from "../../providers/chapter/mangaModel";
 import {ChapterProvider} from "../../providers/chapter/chapter";
 import {ScansPage} from "../scans/scans";
 import {HomePage} from "../home/home";
-import {BookPage} from "../book/book";
 
 /**
  * Generated class for the ChapterListPage page.

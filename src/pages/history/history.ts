@@ -27,7 +27,6 @@ export class HistoryPage {
     this.hitoryProvider.getHistoryForCurrentUser().subscribe(
       (books) => {
         this.books = books;
-        console.log(books);
       }, (err) => {
         this.err = err;
       }

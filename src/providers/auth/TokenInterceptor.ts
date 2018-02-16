@@ -1,5 +1,3 @@
-// src/app/auth/token.interceptor.ts
-
 import { Injectable } from '@angular/core';
 import {
   HttpRequest,
@@ -9,8 +7,8 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import {Storage} from "@ionic/storage";
-// import 'rxjs/add/operator/flatMap';
-
+import "rxjs/add/observable/fromPromise";
+import "rxjs/add/operator/mergeMap";
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {

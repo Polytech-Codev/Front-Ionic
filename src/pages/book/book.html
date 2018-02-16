@@ -17,7 +17,7 @@
   <ion-grid *ngIf="book">
     <ion-row>
       <ion-col col-4>
-        <img src="{{book.imageLinks.thumbnail}}" alt="thumbnail of {{book.title}}">
+        <img src="{{book.imageLinks.thumbnail || 'assets/imgs/book.png'}}" alt="thumbnail of {{book.title}}">
       </ion-col>
       <ion-col col-8>
         <ion-list>

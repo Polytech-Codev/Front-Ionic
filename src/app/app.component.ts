@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {Nav, Platform} from 'ionic-angular';
+import {Nav, NavController, Platform} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {TranslateService} from '@ngx-translate/core';
@@ -13,16 +13,21 @@ import {HistoryPage} from "../pages/history/history";
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = FirstRunPage;
+  rootPage: any = MainPage;
 
   pages: Array<{ title: string, component: any }>;
 
-  constructor(private translate: TranslateService, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private authProvider: AuthProvider) {
+  constructor(private translate: TranslateService,
+              public platform: Platform,
+              public statusBar: StatusBar,
+              public splashScreen: SplashScreen,
+              private authProvider: AuthProvider,
+  ) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HistoryPage },
+      {title: 'History', component: HistoryPage},
     ];
 
   }
@@ -45,9 +50,6 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.initTranslate();
-      this.authProvider.isAuthenticated().subscribe(isAuthenticated => {
-        if (isAuthenticated) this.rootPage = MainPage;
-      })
     });
   }
 
@@ -55,5 +57,10 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+
+  logout() {
+    this.authProvider.logout();
+    this.nav.goToRoot({});
   }
 }
